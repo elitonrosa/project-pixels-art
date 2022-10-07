@@ -3,7 +3,7 @@ window.onload = () => {
 };
 
 const colors = document.querySelectorAll('#color-palette .color');
-let savedColors = ['black', 'red', 'green', 'blue']
+let savedColors = [];
 let storage = localStorage;
 
 function storageColors() {
@@ -43,3 +43,5 @@ function generateColor() {
 
   return color;
 };
+
+// const 
