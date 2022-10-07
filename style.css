@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+#color-palette {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#color-palette .color {
+  border: 1px solid black;
+  width: 75px;
+  height: 75px;
+}
+
+#color-palette .red {
+  background-color: red;  
+}
+
+#color-palette .green {
+  background-color: green;
+}
+
+#color-palette .blue {
+  background-color: blue;
+}
+
+#color-palette .black {
+  background-color: black;
+}
