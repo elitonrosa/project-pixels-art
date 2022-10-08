@@ -5,6 +5,7 @@ window.onload = () => {
 };
 
 const colors = document.querySelectorAll('#color-palette .color');
+const pixel = document.querySelectorAll('.pixel');
 let savedColors = [];
 let storage = localStorage;
 
@@ -47,9 +48,7 @@ function generateColor() {
 }
 
 function paintPixel(color) {
-  const selectedPixel = document.querySelectorAll('.pixel');
-
-  selectedPixel.forEach(el => {
+  pixel.forEach(el => {
     el.addEventListener('click', e => {
       el.style.backgroundColor = color;
     })
@@ -73,5 +72,11 @@ function selectNewColor() {
       color = styles.backgroundColor;
       paintPixel(color);
     })
+  })
+}
+
+function resetPixels() {
+  pixel.forEach(e => {
+    e.style.backgroundColor = 'white';
   })
 }

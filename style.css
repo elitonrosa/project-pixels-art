@@ -47,7 +47,7 @@ header {
   background-color: black;
 }
 
-#button-random-color {
+header button {
   font-size: 14px;
   margin: 20px;
   padding: 8px 12px;
