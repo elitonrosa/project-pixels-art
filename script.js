@@ -2,10 +2,11 @@ window.onload = () => {
   recoverColors();
   paintPixel('black');
   selectNewColor();
+  recoverDraw();
 };
 
 const colors = document.querySelectorAll('#color-palette .color');
-const pixel = document.querySelectorAll('.pixel');
+let pixel = document.querySelectorAll('.pixel');
 let savedColors = [];
 let storage = localStorage;
 
@@ -51,6 +52,7 @@ function paintPixel(color) {
   pixel.forEach(el => {
     el.addEventListener('click', e => {
       el.style.backgroundColor = color;
+      saveDraw();
     })
   })
 }
@@ -78,5 +80,31 @@ function selectNewColor() {
 function resetPixels() {
   pixel.forEach(e => {
     e.style.backgroundColor = 'white';
+    saveDraw();
   })
+}
+
+let draw = [];
+
+function saveDraw() {
+  draw = [];
+
+  pixel.forEach(e => {
+    const style = window.getComputedStyle(e);
+    draw.push(style.backgroundColor);
+  })
+
+  storage.setItem('pixelBoard', JSON.stringify(draw));
+}
+
+function recoverDraw() {
+  draw = JSON.parse(storage.getItem('pixelBoard'));
+
+  if (draw === null) {
+    return
+  }
+
+  for (let i = 0; i < pixel.length; i += 1) {
+    pixel[i].style.backgroundColor = draw[i];
+  }
 }
