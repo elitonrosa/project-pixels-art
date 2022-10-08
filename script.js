@@ -44,4 +44,12 @@ function generateColor() {
   return color;
 };
 
-// const 
+const chooseColor = document.querySelector('.selected');
+let colorSelected  = window.getComputedStyle(chooseColor).backgroundColor;
+let selectedPixel = document.querySelectorAll('.pixel');
+
+for (let i = 0; i < selectedPixel.length; i += 1) {
+  selectedPixel[i].addEventListener('click', (e) => {
+    selectedPixel[i].style.backgroundColor = `${colorSelected}`
+  })
+}
