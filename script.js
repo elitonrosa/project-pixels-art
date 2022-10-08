@@ -1,5 +1,7 @@
 window.onload = () => {
-  recoverColors()
+  recoverColors();
+  paintPixel('black');
+  selectNewColor();
 };
 
 const colors = document.querySelectorAll('#color-palette .color');
@@ -31,7 +33,7 @@ function setRandomColors() {
   }
 
   storageColors();
-};
+}
 
 function generateColor() {
   const values = '0123456789ABCDEF';
@@ -42,14 +44,34 @@ function generateColor() {
   }
 
   return color;
-};
+}
 
-const chooseColor = document.querySelector('.selected');
-let colorSelected  = window.getComputedStyle(chooseColor).backgroundColor;
-let selectedPixel = document.querySelectorAll('.pixel');
+function paintPixel(color) {
+  const selectedPixel = document.querySelectorAll('.pixel');
 
-for (let i = 0; i < selectedPixel.length; i += 1) {
-  selectedPixel[i].addEventListener('click', (e) => {
-    selectedPixel[i].style.backgroundColor = `${colorSelected}`
+  selectedPixel.forEach(el => {
+    el.addEventListener('click', e => {
+      el.style.backgroundColor = color;
+    })
+  })
+}
+
+function removeSelectedColor() {
+  colors.forEach(e => {
+    e.classList.remove('selected');
+  });
+}
+
+function selectNewColor() {
+  let color;
+
+  colors.forEach(el => {
+    el.addEventListener('click', e => {
+      removeSelectedColor();
+      el.classList.add('selected');
+      const styles = window.getComputedStyle(el);
+      color = styles.backgroundColor;
+      paintPixel(color);
+    })
   })
 }
