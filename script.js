@@ -1,12 +1,10 @@
 window.onload = () => {
   recoverColors();
-  paintPixel('black');
-  selectNewColor();
+  makeGrid();
   recoverDraw();
 };
 
 const colors = document.querySelectorAll('#color-palette .color');
-let pixel = document.querySelectorAll('.pixel');
 let savedColors = [];
 let storage = localStorage;
 
@@ -49,6 +47,8 @@ function generateColor() {
 }
 
 function paintPixel(color) {
+  let pixel = document.querySelectorAll('.pixel');
+
   pixel.forEach(el => {
     el.addEventListener('click', e => {
       el.style.backgroundColor = color;
@@ -78,6 +78,8 @@ function selectNewColor() {
 }
 
 function resetPixels() {
+  let pixel = document.querySelectorAll('.pixel');
+
   pixel.forEach(e => {
     e.style.backgroundColor = 'white';
     saveDraw();
@@ -88,6 +90,8 @@ let draw = [];
 
 function saveDraw() {
   draw = [];
+  let pixel = document.querySelectorAll('.pixel');
+
 
   pixel.forEach(e => {
     const style = window.getComputedStyle(e);
@@ -99,6 +103,8 @@ function saveDraw() {
 
 function recoverDraw() {
   draw = JSON.parse(storage.getItem('pixelBoard'));
+  let pixel = document.querySelectorAll('.pixel');
+
 
   if (draw === null) {
     return
@@ -106,5 +112,45 @@ function recoverDraw() {
 
   for (let i = 0; i < pixel.length; i += 1) {
     pixel[i].style.backgroundColor = draw[i];
+  }
+}
+
+const input = document.querySelector('#board-size');
+let container = document.querySelector('#pixel-board');
+
+function inputGrid() {
+  if (input.value === '') {
+    window.alert('Board inválido!');
+    return;
+  }
+
+  const grid = parseInt(input.value);
+
+
+  return makeGrid(grid);
+}
+
+function makeGrid(grid = 5) {
+  const newGrid = (grid) * 45;
+  container.style.width = `${newGrid}px`;
+  const qtdPixels = grid * grid
+  
+  deleteGrid();
+
+  for (let i = 0; i < qtdPixels; i += 1) {
+    let newDiv = document.createElement('div');
+    newDiv.classList.add('pixel');
+    container.appendChild(newDiv);
+  }
+  let pixel = document.querySelectorAll('.pixel');
+  paintPixel('black');
+  selectNewColor();
+}
+
+function deleteGrid() {
+  let pixel = document.querySelectorAll('.pixel');
+
+  for (let i = 0; i < pixel.length; i += 1) {
+    pixel[i].remove();
   }
 }
