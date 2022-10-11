@@ -123,8 +123,17 @@ function inputGrid() {
     window.alert('Board inválido!');
     return;
   }
+  
+  let grid = parseInt(input.value);
 
-  const grid = parseInt(input.value);
+  if (grid < 5) {
+    grid = 5;
+  }
+
+  if (grid > 50) {
+    grid = 50;
+  }
+
 
 
   return makeGrid(grid);
