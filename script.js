@@ -1,6 +1,6 @@
 window.onload = () => {
   recoverColors();
-  makeGrid();
+  // makeGrid();
   recoverDraw();
 };
 
@@ -102,6 +102,14 @@ function saveDraw() {
 }
 
 function recoverDraw() {
+  grid = parseInt(storage.getItem('boardSize'));
+  if (storage.getItem('boardSize') === null) {
+    makeGrid(5);
+  } else {
+    makeGrid(grid);
+  }
+
+
   draw = JSON.parse(storage.getItem('pixelBoard'));
   let pixel = document.querySelectorAll('.pixel');
 
@@ -123,7 +131,7 @@ function inputGrid() {
     window.alert('Board inválido!');
     return;
   }
-  
+
   let grid = parseInt(input.value);
 
   if (grid < 5) {
@@ -134,7 +142,8 @@ function inputGrid() {
     grid = 50;
   }
 
-
+  storage.setItem('boardSize', `${grid}`);
+  resetPixels();
 
   return makeGrid(grid);
 }
@@ -143,7 +152,7 @@ function makeGrid(grid = 5) {
   const newGrid = (grid) * 45;
   container.style.width = `${newGrid}px`;
   const qtdPixels = grid * grid
-  
+
   deleteGrid();
 
   for (let i = 0; i < qtdPixels; i += 1) {
@@ -151,7 +160,10 @@ function makeGrid(grid = 5) {
     newDiv.classList.add('pixel');
     container.appendChild(newDiv);
   }
+
+
   let pixel = document.querySelectorAll('.pixel');
+
   paintPixel('black');
   selectNewColor();
 }
