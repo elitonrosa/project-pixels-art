@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <title>Pixels Art</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Paleta de Cores</title>
-</head>
-
-<body>
-  <header>
-    <h1 id="title">Paleta de Cores</h1>
-    <div id="color-palette">
-      <div class="color black selected"></div>
-      <div class="color red"></div>
-      <div class="color green"></div>
-      <div class="color blue"></div>
-    </div>
-    <button id="button-random-color" onclick="setRandomColors(click)">Cores aleatórias</button>
-    <button id="clear-board" onclick="resetPixels()">Limpar</button>
-    <div>
-      <input type="number" min="1" id="board-size" placeholder="Ex: 10">
-      <button id="generate-board" onclick="inputGrid()">VQV</button>
-    </div>
-  </header>
-
-  <main>
-    <div id="pixel-board">
+  <body>
+    <header>
+      <h1 id="title">Pixels Art</h1>
+      <div>
+        <input type="number" min="1" id="board-size" placeholder="Ex: 10" />
+        <button id="generate-board" onclick="inputGrid()">Gerar Grid</button>
       </div>
-    </div>
-  </main>
-  <script src="script.js"></script>
-</body>
+      <button id="clear-board" onclick="resetPixels()">Limpar</button>
+      <button id="button-random-color" onclick="setRandomColors(click)">
+        Cores aleatórias
+      </button>
+    </header>
 
+    <main>
+      <div id="color-palette">
+        <div class="color black selected"></div>
+        <div class="color red"></div>
+        <div class="color green"></div>
+        <div class="color blue"></div>
+      </div>
+
+      <div id="pixel-board"></div>
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>

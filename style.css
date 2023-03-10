@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Press Start 2P', cursive;
 }
 
 header {
@@ -13,10 +15,18 @@ header {
   flex-wrap: wrap;
 }
 
+body {
+  background-image: url('./assets/img/bg.jpg');
+  background-size: cover;
+}
+
 #title {
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
+  text-transform: uppercase;
+  color: white;
+  -webkit-text-stroke: 0px white;
 }
 
 #color-palette {
@@ -24,12 +34,13 @@ header {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 40px;
 }
 
 #color-palette .color {
-  border: 1px solid black;
-  width: 75px;
-  height: 75px;
+  border: none;
+  width: 60px;
+  height: 60px;
 }
 
 #color-palette .red {
@@ -49,11 +60,12 @@ header {
 }
 
 header button {
-  font-size: 14px;
+  font-size: 10px;
   margin: 20px;
   padding: 8px 12px;
   border: none;
-  background-color: lightgray;
+  background-color: black;
+  color: white;
   cursor: pointer;
 }
 
@@ -63,10 +75,12 @@ header button {
 
 header div input {
   height: 35px;
-  padding-left: 10px;
-  width: 70px;
+  padding: 10px;
+  padding-right: 0;
+  width: 90px;
   margin-right: -15px;
   margin-left: 20px;
+  font-size: 10px;
 }
 
 #pixel-board {
@@ -80,8 +94,10 @@ header div input {
 }
 
 .pixel {
-  width: 40px;
+  min-width: 20px;
+  width: 100%;
+  max-width: 40px;
   height: 40px;
-  border: 1px solid black;
+  border: none;
   background-color: white;
 }
